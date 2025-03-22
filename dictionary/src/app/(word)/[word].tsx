@@ -1,11 +1,14 @@
 import { useLocalSearchParams } from "expo-router";
-import { BottomView, SafeAreaView, Title, TopView, Favorite, WordCard, MainCard, Menu, MenuBottom, TextWordCard, EgText, PartOfSpeech } from "@/constants/Style";
-import { IconSymbol } from "@/components/ui/IconSymbol";
+
 import { useState } from "react";
-import Button from "@/components/ui/Button";
+
 import { router } from 'expo-router'
-import { ScrollView } from "react-native";
-import MeaningsItems from "@/components/MeaningsItem";
+import { SafeAreaView, ScrollView } from "react-native";
+import MeaningsItems from "@/src/components/MeaningsItem";
+import { IconSymbol } from "@/src/components/ui/IconSymbol";
+import { TopView, MainCard, Title, Favorite, BottomView, WordCard, TextWordCard, MenuBottom } from "@/src/constants/Style";
+import Button from "@/src/components/ui/Button";
+
 
 export default function WordScreen() {
 

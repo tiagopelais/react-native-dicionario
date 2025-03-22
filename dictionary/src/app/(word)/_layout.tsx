@@ -1,5 +1,5 @@
-import { IconSymbol } from "@/components/ui/IconSymbol";
-import { BottomView, TopView } from "@/constants/Style";
+
+import { IconSymbol } from "@/src/components/ui/IconSymbol";
 import { Link, Stack } from "expo-router";
 import { Pressable, TouchableOpacity } from "react-native";
 

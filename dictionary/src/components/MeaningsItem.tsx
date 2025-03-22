@@ -1,4 +1,4 @@
-import { EgText, PartOfSpeech } from "@/constants/Style";
+import { EgText, PartOfSpeech } from "../constants/Style";
 import { View } from "react-native";
 
 export default function MeaningsItems({

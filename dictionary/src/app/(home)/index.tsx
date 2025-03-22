@@ -1,7 +1,8 @@
+import Button from '@/src/components/ui/Button';
+import Words from '@/src/components/Words';
+import { BottomView, ListWords, Menu, SafeAreaView, Title, TopView } from '@/src/constants/Style';
 import { useState } from 'react'
-import Button from '@/components/ui/Button'
-import Words from '@/components/Words'
-import { BottomView, ListWords, Menu, SafeAreaView, Title, TopView } from '@/constants/Style'
+
 
 
 export default function HomeScreen() {

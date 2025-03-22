@@ -1,6 +1,6 @@
 import { Text } from "react-native";
 import { IconSymbol, IconSymbolName } from "./IconSymbol";
-import { ButtonMenu } from "@/constants/Style";
+import { ButtonMenu } from "@/src/constants/Style";
 
 export default function Button(
     { label, icon, iconLeft = true, color, onPress }: { label: string, icon: IconSymbolName, iconLeft?: boolean, color: string, onPress: any }) {
