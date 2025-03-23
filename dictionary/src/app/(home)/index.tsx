@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { Alert, FlatList, View, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFavoriteDatabase } from '@/src/database/useFavoriteDatabase';
+import { useHistoryDatabase } from '@/src/database/useHistoryDatabase';
 
 
 
@@ -17,11 +18,8 @@ export default function HomeScreen() {
     const [data, setData] = useState<WordDatabase[]>();
 
     const wordDatabase = useWordDatabase();
-    const favoritessDatabase = useFavoriteDatabase();
-
-    const setCurrentTitle = (title: string) => {
-        setTitle(title)
-    }
+    const favoritesDatabase = useFavoriteDatabase();
+    const historyDatabase = useHistoryDatabase();
 
     async function getData(){
         try{
@@ -53,7 +51,7 @@ export default function HomeScreen() {
         try {
             const response = await wordDatabase.list();
             setData(response);
-            setCurrentTitle('List Words')
+            setTitle('List Words')
         } catch (error) {
             Alert.alert('Attention', 'An error occurred while requesting words!')
         }
@@ -61,9 +59,9 @@ export default function HomeScreen() {
 
     async function listFavorites() {
         try {
-            const response = await favoritessDatabase.list();
+            const response = await favoritesDatabase.list();
             setData(response);
-            setCurrentTitle('Favorites')
+            setTitle('Favorites')
         } catch (error) {
             Alert.alert('Attention', 'An error occurred while requesting favorites!')
         }
@@ -72,9 +70,9 @@ export default function HomeScreen() {
 
     async function listHistory() {
         try {
-            const response = await favoritessDatabase.list();
+            const response = await historyDatabase.list();
             setData(response);
-            setCurrentTitle('History')
+            setTitle('History')
         } catch (error) {
             Alert.alert('Attention', 'An error occurred while requesting favorites!')
         }

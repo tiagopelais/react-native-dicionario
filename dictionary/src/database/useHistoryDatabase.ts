@@ -1,14 +1,14 @@
 import { WordDatabase } from "@/types/WordDatabse";
 import { useSQLiteContext } from "expo-sqlite"
 
-export function useFavoriteDatabase(){
+export function useHistoryDatabase(){
 
     const database = useSQLiteContext();
 
     async function create(data: Omit<WordDatabase, "id">){
 
         const statement = await database.prepareAsync(
-            "INSET INTO history (word) VALUES (word)"
+            "INSERT INTO history (word) VALUES ($word)"
         )
 
         try{
