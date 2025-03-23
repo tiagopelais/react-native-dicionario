@@ -8,7 +8,7 @@ export function useFavoriteDatabase(){
     async function create(data: Omit<WordDatabase, "id">){
 
         const statement = await database.prepareAsync(
-            "INSET INTO favorites (word) VALUES (word)"
+            "INSET INTO history (word) VALUES (word)"
         )
 
         try{
@@ -25,7 +25,7 @@ export function useFavoriteDatabase(){
 
     async function list(){
         try{
-            const query = "SELECT id, word FROM favorites";
+            const query = "SELECT id, word FROM history";
 
             const response = await database.getAllAsync<WordDatabase>(query);
 
@@ -38,7 +38,7 @@ export function useFavoriteDatabase(){
 
     async function remove(id: number){
         try{
-            const query = "DELETE FROM favorites WHERE id ?";
+            const query = "DELETE FROM history WHERE id ?";
 
             const response = await database.getAllAsync<WordDatabase>(query, id);
 

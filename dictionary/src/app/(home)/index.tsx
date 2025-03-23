@@ -6,6 +6,7 @@ import { WordDatabase } from '@/types/WordDatabse';
 import { useEffect, useState } from 'react'
 import { Alert, FlatList, View, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFavoriteDatabase } from '@/src/database/useFavoriteDatabase';
 
 
 
@@ -16,6 +17,7 @@ export default function HomeScreen() {
     const [data, setData] = useState<WordDatabase[]>();
 
     const wordDatabase = useWordDatabase();
+    const favoritessDatabase = useFavoriteDatabase();
 
     const setCurrentTitle = (title: string) => {
         setTitle(title)
@@ -25,7 +27,7 @@ export default function HomeScreen() {
         try{
             const value =  await AsyncStorage.getItem(`${process.env.EXPO_PUBLIC_STORAGE_KEY}-preloaded`);
             if(value != null){
-                list();
+                listWords();
             }else{
                 preload();
             }
@@ -37,7 +39,7 @@ export default function HomeScreen() {
     async function preload() {
         try{
             setIsLoading(true);
-            const response = await wordDatabase.preloadDatabase().then(() => list());
+            const response = await wordDatabase.preloadDatabase().then(() => listWords());
         }catch(error){
             Alert.alert('Attention', 'An error occurred while executing Preload');
         } finally{
@@ -47,12 +49,34 @@ export default function HomeScreen() {
         
       }
 
-    async function list() {
+    async function listWords() {
         try {
             const response = await wordDatabase.list();
             setData(response);
+            setCurrentTitle('List Words')
         } catch (error) {
             Alert.alert('Attention', 'An error occurred while requesting words!')
+        }
+    }
+
+    async function listFavorites() {
+        try {
+            const response = await favoritessDatabase.list();
+            setData(response);
+            setCurrentTitle('Favorites')
+        } catch (error) {
+            Alert.alert('Attention', 'An error occurred while requesting favorites!')
+        }
+    }
+
+
+    async function listHistory() {
+        try {
+            const response = await favoritessDatabase.list();
+            setData(response);
+            setCurrentTitle('History')
+        } catch (error) {
+            Alert.alert('Attention', 'An error occurred while requesting favorites!')
         }
     }
 
@@ -66,9 +90,9 @@ export default function HomeScreen() {
         <SafeAreaView style={{ backgroundColor: '#FFF' }}>
             <TopView>
                 <Menu>
-                    <Button onPress={() => setCurrentTitle('Word List')} label='Word List' icon={'list.bullet'} color='#FAD13F' />
-                    <Button onPress={() => setCurrentTitle('History')} label='History' icon={'book'} color='#B3E5FF' />
-                    <Button onPress={() => setCurrentTitle('Favorites')} label='Favorites' icon={'star'} color='#CEEBC7' />
+                    <Button onPress={() => listWords()} label='Word List' icon={'list.bullet'} color='#FAD13F' />
+                    <Button onPress={() => listHistory()} label='History' icon={'book'} color='#B3E5FF' />
+                    <Button onPress={() => listFavorites()} label='Favorites' icon={'star'} color='#CEEBC7' />
                 </Menu>
             </TopView>
             <Title>{title}</Title>
