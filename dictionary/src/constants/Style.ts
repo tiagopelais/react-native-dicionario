@@ -10,6 +10,7 @@ export const TopView = styled.View`
 `;
 
 export const BottomView = styled.View`
+    
     padding : 10px;
     background-color : #7c7eb9;
     border-top-left-radius: 20px;
@@ -45,9 +46,8 @@ export const ListWords = styled.View`
     
 `
 export const Word = styled.TouchableOpacity`
-    flex: 1;
     background-color: #FFF;
-    padding: 20px;
+    padding: 10px;
     border-radius: 4px;
     min-width: 30%;
     margin: 1%;
